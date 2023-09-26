@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{demandeAnnulation.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{demandeAnnulation.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/demandeAnnulations}" th:text="#{demandeAnnulation.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('demandeAnnulation')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='id', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='idEmet', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='idRecept', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='montant')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='etatDemande')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='heureDemande')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='demandeAnnulation', field='account', type='select')}" />
+                <input type="submit" th:value="#{demandeAnnulation.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

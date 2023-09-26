@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{demandeAnnulation.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{demandeAnnulation.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/demandeAnnulations/add}" th:text="#{demandeAnnulation.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${demandeAnnulations.empty}" th:text="#{demandeAnnulation.list.empty}" />
+            <div th:if="${!demandeAnnulations.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{demandeAnnulation.id.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.idEmet.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.idRecept.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.montant.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.etatDemande.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.heureDemande.label}" scope="col" />
+                            <th th:text="#{demandeAnnulation.account.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="demandeAnnulation : ${demandeAnnulations}">
+                            <td th:text="${demandeAnnulation.id}" />
+                            <td th:text="${demandeAnnulation.idEmet}" />
+                            <td th:text="${demandeAnnulation.idRecept}" />
+                            <td th:text="${demandeAnnulation.montant}" />
+                            <td th:text="${demandeAnnulation.etatDemande}" />
+                            <td th:text="${demandeAnnulation.heureDemande}" />
+                            <td th:text="${demandeAnnulation.account}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/demandeAnnulations/edit/{id}(id=${demandeAnnulation.id})}" th:text="#{demandeAnnulation.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/demandeAnnulations/delete/{id}(id=${demandeAnnulation.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button th:text="#{demandeAnnulation.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
