@@ -1,0 +1,6 @@
+Feature: Création de compte
+
+Scenario: Un utilisateur peut créer un compte
+    Given un utilisateur non enregistré
+    When l'utilisateur clique sur le bouton "Créer un compte"
+    Then un nouveau compte utilisateur est créé avec succès
