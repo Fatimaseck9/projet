@@ -3,9 +3,11 @@ package io.bootify.wallet.service;
 import io.bootify.wallet.domain.Transaction;
 import io.bootify.wallet.model.TransactionDTO;
 import io.bootify.wallet.repos.TransactionRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
@@ -19,6 +21,10 @@ class TransactionServiceTest {
 
     @Mock
     private TransactionRepository transactionRepository;
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     void create() {

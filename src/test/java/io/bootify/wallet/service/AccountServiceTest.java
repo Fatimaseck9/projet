@@ -7,6 +7,10 @@ import io.bootify.wallet.util.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.Assert;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.Assert.*;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.Assert.assertEquals;
@@ -15,18 +19,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class AccountServiceTest {
-    private Account account;
 
+    @InjectMocks
     private AccountService accountService;
-    private AccountRepository accountRepository ;
+
+    @Mock
+    private AccountRepository accountRepository;
 
     @BeforeEach
     void setUp() {
-
-        account=new Account();
-
+        MockitoAnnotations.initMocks(this);
     }
-
     @Test
     void create() {
         // Créez un compte fictif pour le test
