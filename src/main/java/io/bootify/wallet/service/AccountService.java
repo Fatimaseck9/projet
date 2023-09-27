@@ -101,34 +101,20 @@ public class AccountService {
     }
 
     public void depositMoney(Long id, double amount) {
-        Account account = accountRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Account not found"));
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isEmpty()) {
+            throw new NotFoundException("Account not found");
+        }
+        Account account = optionalAccount.get();
 
         if (amount <= 0) {
             throw new IllegalArgumentException("Le montant du dépôt doit être positif");
         }
-
         double currentBalance = Double.parseDouble(account.getSolde());
         String newBalance = String.valueOf(currentBalance + amount);
         account.setSolde(newBalance);
 
         accountRepository.save(account);
-
-
-       // Optional<Account> optionalAccount = accountRepository.findById(id);
-        //if (optionalAccount.isEmpty()) {
-            //throw new NotFoundException("Account not found");
-        //}
-        //Account account = optionalAccount.get();
-
-        //if (amount <= 0) {
-          //  throw new IllegalArgumentException("Le montant du dépôt doit être positif");
-       // }
-       // double currentBalance = Double.parseDouble(account.getSolde());
-        //String newBalance = String.valueOf(currentBalance + amount);
-        //account.setSolde(newBalance);
-
-        //accountRepository.save(account);
     }
 
 
