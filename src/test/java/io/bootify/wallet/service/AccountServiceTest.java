@@ -4,8 +4,10 @@ import io.bootify.wallet.domain.Account;
 import io.bootify.wallet.model.AccountDTO;
 import io.bootify.wallet.repos.AccountRepository;
 import io.bootify.wallet.util.NotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.junit.Assert;
+import static org.junit.Assert.*;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -18,6 +20,12 @@ class AccountServiceTest {
     private AccountService accountService;
     private AccountRepository accountRepository ;
 
+    @BeforeEach
+    void setUp() {
+
+        account=new Account();
+
+    }
 
     @Test
     void create() {
@@ -34,10 +42,12 @@ class AccountServiceTest {
 
     @Test
     void update() {
+
         // Créez un compte factice pour les tests
         Account account = new Account();
         account.setId(1L);
         account.setSolde("100.0");
+
 
         // Configurez le comportement de mock pour findById
         when(accountRepository.findById(1L)).thenReturn(account);
@@ -59,6 +69,7 @@ class AccountServiceTest {
 
     @Test
     void delete() {
+
         // Créez un compte factice pour les tests
         Account account = new Account();
         account.setId(1L);
@@ -112,7 +123,7 @@ class AccountServiceTest {
         assertEquals("150.0", account.getSolde());
     }
 
-    @org.junit.Test
+
     void testDepositMoney_accountNotFound() {
         when(accountRepository.findById(1L)).thenReturn(null);
 
@@ -123,7 +134,7 @@ class AccountServiceTest {
         verify(accountRepository, never()).save(any());
     }
 
-    @org.junit.Test
+
     public void testWithdrawal() {
         // Créer un compte factice pour les tests
         Account account = new Account();

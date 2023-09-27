@@ -37,6 +37,8 @@ public class AccountService {
         this.demandeAnnulationRepository = demandeAnnulationRepository;
     }
 
+
+
     public List<AccountDTO> findAll() {
         final List<Account> accounts = accountRepository.findAll(Sort.by("id"));
         return accounts.stream()
