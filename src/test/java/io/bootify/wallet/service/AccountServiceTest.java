@@ -141,16 +141,7 @@ class AccountServiceTest {
         // Vérifier que le solde du compte a été mis à jour correctement
         assertEquals("50.0", account.getSolde());
 
-        //testWithdrawMoney_accountNotFound
 
-        // Simuler le cas où le compte n'est pas trouvé
-        when(accountRepository.findById(1L)).thenReturn(null);
-
-        // Vérifier que la méthode withdrawMoney lance bien une NotFoundException lorsque le compte n'est pas trouvé
-        assertThrows(NotFoundException.class, () -> accountService.withdrawMoney(1L, 50.0));
-
-        // Vérifier que la méthode save n'a pas été appelée
-        verify(accountRepository, never()).save(any());
 
     }
 

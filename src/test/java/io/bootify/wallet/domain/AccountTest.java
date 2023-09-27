@@ -2,6 +2,7 @@ package io.bootify.wallet.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,9 +10,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 class AccountTest {
+    @Mock
     private Account account;
-
-
 
     @BeforeEach
     void setUp() {
