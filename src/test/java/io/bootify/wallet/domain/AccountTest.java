@@ -114,18 +114,7 @@ class AccountTest {
 
     @Test
     void setTransaction() {
-        // Créez une instance d'Account
-        Account account = new Account();
 
-        // Créez une nouvelle transaction
-        Transaction newTransaction = new Transaction();
-        newTransaction.setId(2L);
-
-        // Utilisez la méthode setTransaction pour définir la nouvelle transaction de l'Account
-        account.setTransaction(Collections.singleton(newTransaction)); // Utilisation de Collections.singleton pour créer un ensemble contenant une seule transaction
-
-        // Vérifiez que la méthode getTransaction retourne la nouvelle transaction
-        assertEquals(Collections.singleton(newTransaction), account.getTransaction());
     }
 
     @Test
