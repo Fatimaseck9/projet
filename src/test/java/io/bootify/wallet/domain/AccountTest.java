@@ -1,12 +1,23 @@
 package io.bootify.wallet.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 class AccountTest {
     private Account account;
+
+
+
+    @BeforeEach
+    void setUp() {
+        // Initialiser un nouvel objet Account avant chaque test
+        account = new Account();
+    }
     @Test
     void getId() {
         // Définir l'ID de l'Account
@@ -27,6 +38,8 @@ class AccountTest {
 
     @Test
     void getSolde() {
+        // Créez une instance d'Account
+        Account account = new Account();
         // Définir le solde de l'Account
         account.setSolde("100.0");
 
@@ -37,6 +50,8 @@ class AccountTest {
 
     @Test
     void setSolde() {
+        // Créez une instance d'Account
+        Account account = new Account();
         // Définir le solde de l'Account en utilisant la méthode setSolde
         account.setSolde("200.0");
 
@@ -75,28 +90,42 @@ class AccountTest {
 
     @Test
     void getTransaction() {
-        // Créez une transaction factice
+        // Créez une nouvelle transaction
         Transaction transaction = new Transaction();
         transaction.setId(1L);
 
-        // Définir la transaction de l'Account
-        account.setTransaction((Set<Transaction>) transaction);
+        // Créez un ensemble et ajoutez la nouvelle transaction
+        Set<Transaction> transactionSet = new HashSet<>();
+        transactionSet.add(transaction);
 
-        // Vérifier que getTransaction retourne la transaction attendue
-        assertEquals(transaction, account.getTransaction());
+        // Utilisez la méthode setTransaction pour définir l'ensemble de transactions de l'Account
+        account.setTransaction(transactionSet);
+
+        // Utilisez la méthode getTransaction pour obtenir l'ensemble de transactions de l'Account
+        Set<Transaction> result = account.getTransaction();
+
+        // Vérifier que l'ensemble retourné est égal à l'ensemble attendu
+        assertEquals(transactionSet, result);
     }
+
+
+
+
 
     @Test
     void setTransaction() {
+        // Créez une instance d'Account
+        Account account = new Account();
+
         // Créez une nouvelle transaction
         Transaction newTransaction = new Transaction();
         newTransaction.setId(2L);
 
         // Utilisez la méthode setTransaction pour définir la nouvelle transaction de l'Account
-        account.setTransaction((Set<Transaction>) newTransaction);
+        account.setTransaction(Collections.singleton(newTransaction)); // Utilisation de Collections.singleton pour créer un ensemble contenant une seule transaction
 
-        // Vérifier que la méthode getTransaction retourne la nouvelle transaction
-        assertEquals(newTransaction, account.getTransaction());
+        // Vérifiez que la méthode getTransaction retourne la nouvelle transaction
+        assertEquals(Collections.singleton(newTransaction), account.getTransaction());
     }
 
     @Test
@@ -105,12 +134,24 @@ class AccountTest {
         DemandeAnnulation demandeAnnulation = new DemandeAnnulation();
         demandeAnnulation.setId(1L);
 
-        // Définir la demande d'annulation de l'Account
-        account.setDemandeAnnulation((Set<DemandeAnnulation>) demandeAnnulation);
+        //Créez un ensemble et ajoutez la nouvelle demande d'annulation
+        Set<DemandeAnnulation> demandeAnnulationSet = new HashSet<>();
+        demandeAnnulationSet.add(demandeAnnulation);
 
-        // Vérifier que getDemandeAnnulation retourne la demande d'annulation attendue
-        assertEquals(demandeAnnulation, account.getDemandeAnnulation());
-    }
+        // Utilisez la méthode setDemandeAnnulation pour définir l'ensemble de demandes d'annulation de l'Account
+        account.setDemandeAnnulation(demandeAnnulationSet);
+
+        // Utilisez la méthode getDemandeAnnulation pour obtenir l'ensemble de demandes d'annulation de l'Account
+        Set<DemandeAnnulation> result = account.getDemandeAnnulation();
+
+        // Vérifier que l'ensemble retourné est égal à l'ensemble attendu
+        assertEquals(demandeAnnulationSet, result);
+
+
+
+
+
+}
 
     @Test
     void setDemandeAnnulation() {
@@ -118,12 +159,23 @@ class AccountTest {
         DemandeAnnulation newDemandeAnnulation = new DemandeAnnulation();
         newDemandeAnnulation.setId(2L);
 
-        // Utilisez la méthode setDemandeAnnulation pour définir la nouvelle demande d'annulation de l'Account
-        account.setDemandeAnnulation((Set<DemandeAnnulation>) newDemandeAnnulation);
+        // Créez un ensemble et ajoutez la nouvelle demande d'annulation
+        Set<DemandeAnnulation> demandeAnnulationSet = new HashSet<>();
+        demandeAnnulationSet.add(newDemandeAnnulation);
 
-        // Vérifier que la méthode getDemandeAnnulation retourne la nouvelle demande d'annulation
-        assertEquals(newDemandeAnnulation, account.getDemandeAnnulation());
-    }
+        // Utilisez la méthode setDemandeAnnulation pour définir le nouvel ensemble de demandes d'annulation de l'Account
+        account.setDemandeAnnulation(demandeAnnulationSet);
+
+        // Vérifier que la méthode getDemandeAnnulation retourne le nouvel ensemble de demandes d'annulation
+        assertEquals(demandeAnnulationSet, account.getDemandeAnnulation());
+
+
+
+
+
+
+
+}
 
 
 

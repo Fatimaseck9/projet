@@ -1,5 +1,6 @@
 package io.bootify.wallet.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,6 +9,10 @@ class DemandeAnnulationTest {
 
     private DemandeAnnulation demandeAnnulation;
 
+    @BeforeEach
+    void setUp() {
+        demandeAnnulation = new DemandeAnnulation();
+    }
 
     @Test
     void getMontant() {
