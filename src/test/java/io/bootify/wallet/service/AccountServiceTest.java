@@ -105,28 +105,9 @@ class AccountServiceTest {
 
         // Vérifier que le solde du compte a été mis à jour correctement
         assertEquals("150.0", account.getSolde());
-    }
 
-  @Test
-  void testDepositMoney_success() {
-        // Créer un compte factice pour le test
-        Account account = new Account();
-        account.setId(1L);
-        account.setSolde("100.0");
-        when(accountRepository.findById(1l)).thenReturn(account);
+        //estDepositMoney_accountNotFound
 
-        // Appeler la méthode depositMoney avec un montant positif
-        accountService.depositMoney(1L, 50.0);
-
-        // Vérifier que la méthode save a été appelée avec le compte mis à jour
-        verify(accountRepository, times(1)).save(account);
-
-        // Vérifier que le solde du compte a été mis à jour correctement
-        assertEquals("150.0", account.getSolde());
-    }
-
-    @Test
-    void testDepositMoney_accountNotFound() {
         when(accountRepository.findById(1L)).thenReturn(null);
 
         // Vérifier que la méthode depositMoney lance bien une NotFoundException lorsque le compte n'est pas trouvé
@@ -134,7 +115,11 @@ class AccountServiceTest {
 
         // Vérifier que la méthode save n'a pas été appelée
         verify(accountRepository, never()).save(any());
+
+
     }
+
+
 
     @Test
     public void testWithdrawal() {
@@ -154,10 +139,8 @@ class AccountServiceTest {
         // Vérifier que le solde du compte a été mis à jour correctement
         assertEquals("50.0", account.getSolde());
 
-    }
+        //testWithdrawMoney_accountNotFound
 
-   @Test
-    void testWithdrawMoney_accountNotFound() {
         // Simuler le cas où le compte n'est pas trouvé
         when(accountRepository.findById(1L)).thenReturn(null);
 
@@ -166,7 +149,9 @@ class AccountServiceTest {
 
         // Vérifier que la méthode save n'a pas été appelée
         verify(accountRepository, never()).save(any());
+
     }
+
 
 
 
