@@ -30,6 +30,7 @@ class AccountServiceTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
     }
+
     @Test
     void create() {
         // Créez un compte fictif pour le test
@@ -88,7 +89,6 @@ class AccountServiceTest {
     }
 
 
-
     @Test
     void depositMoney() {
         // Créer un compte factice pour le test
@@ -107,9 +107,8 @@ class AccountServiceTest {
         assertEquals("150.0", account.getSolde());
     }
 
-
-    @org.junit.Test
-    void testDepositMoney_success() {
+  @Test
+  void testDepositMoney_success() {
         // Créer un compte factice pour le test
         Account account = new Account();
         account.setId(1L);
@@ -126,7 +125,7 @@ class AccountServiceTest {
         assertEquals("150.0", account.getSolde());
     }
 
-
+    @Test
     void testDepositMoney_accountNotFound() {
         when(accountRepository.findById(1L)).thenReturn(null);
 
@@ -137,7 +136,7 @@ class AccountServiceTest {
         verify(accountRepository, never()).save(any());
     }
 
-
+    @Test
     public void testWithdrawal() {
         // Créer un compte factice pour les tests
         Account account = new Account();
@@ -157,8 +156,7 @@ class AccountServiceTest {
 
     }
 
-
-    @org.junit.Test
+   @Test
     void testWithdrawMoney_accountNotFound() {
         // Simuler le cas où le compte n'est pas trouvé
         when(accountRepository.findById(1L)).thenReturn(null);
